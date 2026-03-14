@@ -48,7 +48,6 @@ export async function POST(req: Request) {
         content,
         userId: session.user.id,
         videoId,
-        parentId: parentId || null
       },
       include: {
         user: { select: { fullName: true } }

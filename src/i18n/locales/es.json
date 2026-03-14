@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "search": "Buscar",
+    "upload": "Subir",
+    "dashboard": "Panel",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "createChannel": "Crear canal"
+  },
+  "home": {
+    "feedTitle": "Explorar Propiedades",
+    "loading": "Cargando..."
+  },
+  "search": {
+    "title": "Buscar Propiedades",
+    "placeholder": "Buscar por ciudad, palabras clave...",
+    "noResults": "No se encontraron resultados"
+  },
+  "watch": {
+    "subscribe": "Suscribirse",
+    "subscribed": "Suscrito",
+    "subscribers": "suscriptores",
+    "share": "Compartir",
+    "views": "vistas",
+    "beds": "Camas",
+    "baths": "Baños",
+    "sqm": "m²",
+    "forSale": "EN VENTA",
+    "forRent": "ALQUILER",
+    "comments": "Comentarios",
+    "addComment": "Añadir un comentario...",
+    "recommended": "Propiedades Recomendadas"
+  },
+  "upload": {
+    "title": "Subir Video",
+    "videoTitle": "Título del video",
+    "description": "Descripción",
+    "propertyType": "Tipo de Propiedad",
+    "status": "Estado",
+    "price": "Precio",
+    "bedrooms": "Dormitorios",
+    "bathrooms": "Baños",
+    "size": "Tamaño (m²)",
+    "country": "País",
+    "city": "Ciudad",
+    "address": "Dirección",
+    "submit": "Subir"
+  },
+  "channel": {
+    "videos": "Videos"
+  },
+  "dashboard": {
+    "title": "Panel del Creador",
+    "totalViews": "Vistas Totales",
+    "totalLikes": "Me gusta Totales"
+  }
+}

@@ -4,6 +4,10 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { Providers } from "@/components/Providers";
+import { cookies } from "next/headers";
+import { defaultLocale, type Locale, locales } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
+import { LanguageProvider } from "@/i18n/LanguageProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,23 +16,32 @@ export const metadata: Metadata = {
   description: "The premier video-first platform for real estate properties.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get("NEXT_LOCALE")?.value as Locale;
+  const locale = cookieLocale && locales.includes(cookieLocale) ? cookieLocale : defaultLocale;
+  const dict = await getDictionary(locale);
+
+  const dir = locale === "ar" ? "rtl" : "ltr";
+
   return (
-    <html lang="en" className="dark">
+    <html lang={locale} dir={dir} className="dark">
       <body className={`${inter.className} bg-[#0f0f0f] text-[#f1f1f1]`}>
-        <Providers>
-          <Header />
-          <div className="flex pt-16">
-            <Sidebar />
-            <main className="flex-1 min-h-[calc(100vh-64px)] xl:ml-64 bg-[#0f0f0f]">
-              {children}
-            </main>
-          </div>
-        </Providers>
+        <LanguageProvider locale={locale} dictionary={dict}>
+          <Providers>
+            <Header />
+            <div className="flex pt-16">
+              <Sidebar />
+              <main className="flex-1 min-h-[calc(100vh-64px)] xl:ml-64 bg-[#0f0f0f]">
+                {children}
+              </main>
+            </div>
+          </Providers>
+        </LanguageProvider>
       </body>
     </html>
   );

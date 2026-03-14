@@ -8,14 +8,13 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const city = searchParams.get("city");
     
-    // Base query to fetch only properties that have valid coordinates
+    // Base query to fetch only properties
     const whereClause: any = {
-      latitude: { not: null },
-      longitude: { not: null }
+      property: { isNot: null }
     };
 
     if (city) {
-       whereClause.city = { contains: city };
+       whereClause.property = { city: { contains: city } };
     }
 
     // Fetch essential data required for map markers
@@ -24,20 +23,35 @@ export async function GET(req: Request) {
       select: {
         id: true,
         title: true,
-        propertyType: true,
-        price: true,
-        latitude: true,
-        longitude: true,
-        city: true,
-        status: true,
+        property: {
+          select: {
+            propertyType: true,
+            price: true,
+            city: true,
+            status: true
+          }
+        },
         channel: {
-          select: { avatarUrl: true, channelName: true }
+          select: { avatar: true, name: true }
         }
       },
-      take: 100 // Cap to prevent massive payloads, add bounding box logic for real production apps
+      take: 100
     });
 
-    return NextResponse.json(mapProperties, { status: 200 });
+    // Map the shape back for the frontend
+    const mappedProps = mapProperties.map(v => ({
+      ...v,
+      propertyType: v.property?.propertyType,
+      price: v.property?.price ? Number(v.property.price) : 0,
+      city: v.property?.city,
+      status: v.property?.status,
+      latitude: 0, // removed from schema
+      longitude: 0, // removed from schema
+      channelAvatarUrl: v.channel?.avatar,
+      channelName: v.channel?.name
+    }));
+
+    return NextResponse.json(mappedProps, { status: 200 });
 
   } catch (error) {
     console.error("Map Data API Error:", error);

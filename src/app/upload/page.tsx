@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { UploadCloud, Video, Info, MapPin, DollarSign, List, PhoneCall } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from '@/i18n/LanguageProvider';
 
 const LOCATION_DATA = {
   "USA": { currency: "USD", symbol: "$", cities: ["New York", "Los Angeles", "Miami", "Beverly Hills", "Chicago"] },
@@ -20,6 +21,7 @@ export default function UploadPage() {
   const [useWhatsAppSameAsPhone, setUseWhatsAppSameAsPhone] = useState(true);
   const [isPublishing, setIsPublishing] = useState(false);
   const router = useRouter();
+  const { t } = useTranslation();
 
   const currentCurrencySymbol = selectedCountry ? LOCATION_DATA[selectedCountry].symbol : "$";
   const availableCities = selectedCountry ? LOCATION_DATA[selectedCountry].cities : [];
@@ -71,7 +73,7 @@ export default function UploadPage() {
   return (
     <div className="max-w-4xl mx-auto p-4 md:p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white mb-2">Upload Property Video</h1>
+        <h1 className="text-3xl font-bold text-white mb-2">{t('upload', 'title')}</h1>
         <p className="text-gray-400">Share your listing with thousands of potential buyers globally.</p>
       </div>
 
@@ -111,16 +113,16 @@ export default function UploadPage() {
              </h2>
              <div className="flex flex-col gap-4">
                <div>
-                 <label className="block text-sm font-medium text-gray-400 mb-1">Property Title *</label>
+                 <label className="block text-sm font-medium text-gray-400 mb-1">{t('upload', 'videoTitle')}</label>
                  <input type="text" name="title" required className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500" placeholder="e.g. Stunning Modern Villa in Beverly Hills" />
                </div>
                <div>
-                 <label className="block text-sm font-medium text-gray-400 mb-1">Description</label>
+                 <label className="block text-sm font-medium text-gray-400 mb-1">{t('upload', 'description')}</label>
                  <textarea rows={4} name="description" className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500" placeholder="Tell buyers about the unique features..."></textarea>
                </div>
                <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-1">Property Type *</label>
+                    <label className="block text-sm font-medium text-gray-400 mb-1">{t('upload', 'propertyType')}</label>
                     <select name="propertyType" className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500">
                       <option value="VILLA">Villa</option>
                       <option value="APARTMENT">Apartment</option>
@@ -130,7 +132,7 @@ export default function UploadPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-1">Status *</label>
+                    <label className="block text-sm font-medium text-gray-400 mb-1">{t('upload', 'status')}</label>
                     <select name="status" className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500">
                       <option value="FOR_SALE">For Sale</option>
                       <option value="FOR_RENT">For Rent</option>
@@ -149,20 +151,20 @@ export default function UploadPage() {
              </h2>
              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <div>
-                   <label className="block text-sm font-medium text-gray-400 mb-1">Bedrooms</label>
+                   <label className="block text-sm font-medium text-gray-400 mb-1">{t('upload', 'bedrooms')}</label>
                    <input type="number" name="bedrooms" className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500" placeholder="e.g. 4" />
                 </div>
                 <div>
-                   <label className="block text-sm font-medium text-gray-400 mb-1">Bathrooms</label>
+                   <label className="block text-sm font-medium text-gray-400 mb-1">{t('upload', 'bathrooms')}</label>
                    <input type="number" step="0.5" name="bathrooms" className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500" placeholder="e.g. 3.5" />
                 </div>
                 <div>
-                   <label className="block text-sm font-medium text-gray-400 mb-1">Size (Sqm.)</label>
+                   <label className="block text-sm font-medium text-gray-400 mb-1">{t('upload', 'size')}</label>
                    <input type="number" name="sizeSqm" className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500" placeholder="e.g. 250" />
                 </div>
                 <div>
                    <label className="block text-sm font-medium text-gray-400 mb-1 flex items-center gap-1">
-                     Price <span className="bg-gray-800 text-gray-300 text-xs px-1.5 py-0.5 rounded">{selectedCountry ? LOCATION_DATA[selectedCountry as CountryKey].currency : 'USD'}</span>
+                     {t('upload', 'price')} <span className="bg-gray-800 text-gray-300 text-xs px-1.5 py-0.5 rounded">{selectedCountry ? LOCATION_DATA[selectedCountry as CountryKey].currency : 'USD'}</span>
                    </label>
                    <div className="relative">
                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 font-medium">{currentCurrencySymbol}</span>
@@ -181,7 +183,7 @@ export default function UploadPage() {
              </h2>
              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                   <label className="block text-sm font-medium text-gray-400 mb-1">Country *</label>
+                   <label className="block text-sm font-medium text-gray-400 mb-1">{t('upload', 'country')}</label>
                    <select 
                      className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500"
                      value={selectedCountry}
@@ -195,7 +197,7 @@ export default function UploadPage() {
                    </select>
                 </div>
                 <div>
-                   <label className="block text-sm font-medium text-gray-400 mb-1">City *</label>
+                   <label className="block text-sm font-medium text-gray-400 mb-1">{t('upload', 'city')}</label>
                    <select 
                      className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 disabled:opacity-50"
                      value={selectedCity}
@@ -210,7 +212,7 @@ export default function UploadPage() {
                    </select>
                 </div>
                 <div>
-                   <label className="block text-sm font-medium text-gray-400 mb-1">Area / District</label>
+                   <label className="block text-sm font-medium text-gray-400 mb-1">{t('upload', 'address')}</label>
                    <input type="text" name="area" className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500" placeholder="Enter neighborhood" />
                 </div>
              </div>
@@ -220,7 +222,7 @@ export default function UploadPage() {
           <div className="bg-gray-950 -mx-6 md:-mx-8 -mb-6 md:-mb-8 p-6 border-t border-gray-800 flex justify-end gap-4 mt-4">
              <button type="button" disabled={isPublishing} className="px-6 py-2.5 rounded-lg text-white font-medium hover:bg-gray-800 transition-colors disabled:opacity-50">Save as Draft</button>
              <button type="submit" disabled={isPublishing} className="px-8 py-2.5 rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30 disabled:opacity-50">
-               {isPublishing ? "Publishing..." : "Publish Video"}
+               {isPublishing ? "Publishing..." : t('upload', 'submit')}
              </button>
           </div>
 

@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Главная",
+    "search": "Поиск",
+    "upload": "Загрузить",
+    "dashboard": "Панель",
+    "login": "Войти",
+    "logout": "Выйти",
+    "createChannel": "Создать канал"
+  },
+  "home": {
+    "feedTitle": "Обзор недвижимости",
+    "loading": "Загрузка..."
+  },
+  "search": {
+    "title": "Поиск недвижимости",
+    "placeholder": "Поиск по городу, ключевым словам...",
+    "noResults": "Нет результатов"
+  },
+  "watch": {
+    "subscribe": "Подписаться",
+    "subscribed": "Подписка оформлена",
+    "subscribers": "подписчиков",
+    "share": "Поделиться",
+    "views": "просмотров",
+    "beds": "Кровати",
+    "baths": "Ванные",
+    "sqm": "кв.м.",
+    "forSale": "НА ПРОДАЖУ",
+    "forRent": "В АРЕНДУ",
+    "comments": "Комментарии",
+    "addComment": "Добавить комментарий...",
+    "recommended": "Рекомендуемая недвижимость"
+  },
+  "upload": {
+    "title": "Загрузить видео",
+    "videoTitle": "Название",
+    "description": "Описание",
+    "propertyType": "Тип недвижимости",
+    "status": "Статус",
+    "price": "Цена",
+    "bedrooms": "Спальни",
+    "bathrooms": "Ванные",
+    "size": "Площадь (кв.м.)",
+    "country": "Страна",
+    "city": "Город",
+    "address": "Адрес",
+    "submit": "Загрузить"
+  },
+  "channel": {
+    "videos": "Видео"
+  },
+  "dashboard": {
+    "title": "Панель автора",
+    "totalViews": "Всего просмотров",
+    "totalLikes": "Всего лайков"
+  }
+}

@@ -15,7 +15,7 @@ export async function GET(req: Request) {
     // First fetch the source video to understand what to recommend against
     const sourceVideo = await prisma.video.findUnique({
       where: { id: videoId },
-      select: { propertyType: true, city: true, price: true }
+      include: { property: true }
     });
 
     if (!sourceVideo) {
@@ -28,18 +28,23 @@ export async function GET(req: Request) {
       where: {
         id: { not: videoId },
         OR: [
-          { propertyType: sourceVideo.propertyType },
-          { city: sourceVideo.city },
+          { property: { propertyType: sourceVideo.property?.propertyType } },
+          { property: { city: sourceVideo.property?.city } },
         ]
       },
       include: {
-        channel: { select: { channelName: true, avatarUrl: true } }
+        channel: { select: { name: true, avatar: true } },
+        property: true
       },
       orderBy: {
-        viewsCount: "desc"
+        createdAt: "desc"
       },
       take: 10
     });
+
+    // Map properties back if frontend relies on flat structure, similar to map route, 
+    // or just return raw format as handled in search API. Let's return raw format since SearchClient was adapted.
+    // However, some properties might expect flat. I will return the prisma response.
 
     return NextResponse.json(similarProperties, { status: 200 });
 

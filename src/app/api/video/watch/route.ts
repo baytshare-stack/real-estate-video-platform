@@ -15,12 +15,12 @@ export async function GET(req: Request) {
     const video = await prisma.video.findUnique({
       where: { id: videoId },
       include: {
+        property: true,
         channel: {
           select: {
-            channelName: true,
-            avatarUrl: true,
-            followersCount: true,
-            user: {
+            name: true,
+            avatar: true,
+            owner: {
               select: {
                 phoneNumber: true,
                 phoneCode: true,
@@ -36,38 +36,42 @@ export async function GET(req: Request) {
     }
 
     // Determine WhatsApp Contact Number
-    // Uses the Video specific override if it exists, otherwise falls back to the Channel Owner's phone
-    const contactPhoneCode = video.phoneCode || video.channel?.user?.phoneCode || "";
-    const contactPhoneNumber = video.phoneNumber || video.channel?.user?.phoneNumber || "";
-    const waLink = `https://wa.me/${contactPhoneCode.replace('+', '')}${contactPhoneNumber}?text=I%20am%20interested%20in%20this%20property%20and%20would%20like%20more%20information.`;
+    const contactPhoneCode = video.channel?.owner?.phoneCode || "";
+    const contactPhoneNumber = video.channel?.owner?.phoneNumber || "";
+    
+    let contactInfo = null;
+    if (contactPhoneNumber) {
+      const waLink = `https://wa.me/${contactPhoneCode.replace('+', '')}${contactPhoneNumber}?text=I%20am%20interested%20in%20this%20property%20and%20would%20like%20more%20information.`;
+      contactInfo = {
+        rawPhone: `+${contactPhoneCode.replace('+', '')} ${contactPhoneNumber}`,
+        whatsappLink: waLink
+      };
+    }
 
     // Construct the response mapping directly to the Watch Page UI requirements
     const watchData = {
       id: video.id,
       videoUrl: video.videoUrl,
-      playbackId: video.playbackId,
+      playbackId: "", // removed
       title: video.title,
       description: video.description,
-      price: video.price,
-      bedrooms: video.bedrooms,
-      bathrooms: video.bathrooms,
-      sizeSqm: video.sizeSqm,
-      location: `${video.city}, ${video.country}`,
-      address: video.address,
-      latitude: video.latitude,
-      longitude: video.longitude,
-      status: video.status,
-      viewsCount: video.viewsCount,
+      price: video.property?.price ? Number(video.property.price) : 0,
+      bedrooms: video.property?.bedrooms,
+      bathrooms: video.property?.bathrooms,
+      sizeSqm: video.property?.sizeSqm,
+      location: `${video.property?.city}, ${video.property?.country}`,
+      address: video.property?.address,
+      latitude: 0, // removed
+      longitude: 0, // removed
+      status: video.property?.status,
+      viewsCount: 0, // removed
       likesCount: video.likesCount,
       channel: {
-        channelName: video.channel.channelName,
-        avatarUrl: video.channel.avatarUrl,
-        followersCount: video.channel.followersCount,
+        channelName: video.channel.name,
+        avatarUrl: video.channel.avatar,
+        followersCount: 0, // removed
       },
-      contact: {
-        rawPhone: `+${contactPhoneCode} ${contactPhoneNumber}`,
-        whatsappLink: waLink
-      }
+      contact: contactInfo
     };
 
     return NextResponse.json(watchData, { status: 200 });

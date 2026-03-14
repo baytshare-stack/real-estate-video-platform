@@ -1,27 +1,31 @@
 import VideoCard from '@/components/VideoCard';
 import { Flame } from 'lucide-react';
 import { PrismaClient } from '@prisma/client';
+import { getServerTranslation } from '@/i18n/server';
 
 const prisma = new PrismaClient();
 
+export const dynamic = 'force-dynamic';
+
 // This is a Next.js Server Component, it fetches DB directly on the server
 export default async function Home() {
+  const { t } = await getServerTranslation();
   
   // Fetch real data from sqlite/postgres database
   const videos = await prisma.video.findMany({
-    where: { videoFormat: "LONG" }, 
     orderBy: { createdAt: 'desc' },
     include: {
-      channel: { select: { channelName: true, avatarUrl: true } }
+      channel: { select: { name: true, avatar: true } },
+      property: true
     },
     take: 16
   });
 
   const shorts = await prisma.video.findMany({
-    where: { videoFormat: "SHORT" },
     orderBy: { createdAt: 'desc' },
     include: {
-      channel: { select: { channelName: true, avatarUrl: true } }
+      channel: { select: { name: true, avatar: true } },
+      property: true
     },
     take: 10
   });
@@ -32,7 +36,7 @@ export default async function Home() {
 
   return (
     <div className="p-4 md:p-6 max-w-[2000px] mx-auto min-h-screen">
-      
+      <h1 className="text-2xl font-bold mb-4 text-white">{t('home', 'feedTitle')}</h1>
       {/* Filters Strip (Optional, similar to YouTube's top pills) */}
       <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-4 mb-2">
         {['All', 'Mansions', 'Apartments', 'Commercial', 'New York', 'Dubai', 'For Rent', 'Under $1M'].map(filter => (
@@ -48,9 +52,14 @@ export default async function Home() {
           <VideoCard 
             key={video.id} 
             {...video} 
-            channelName={video.channelName || video.channel?.channelName}
-            channelAvatarUrl={video.channelAvatarUrl || video.channel?.avatarUrl}
-            location={`${video.city}, ${video.country || 'USA'}`}
+            price={video.property?.price ? Number(video.property.price) : video.price}
+            bedrooms={video.property?.bedrooms || video.bedrooms}
+            bathrooms={video.property?.bathrooms || video.bathrooms}
+            sizeSqm={video.property?.sizeSqm || video.sizeSqm}
+            status={video.property?.status || video.status}
+            channelName={video.channelName || video.channel?.name}
+            channelAvatarUrl={video.channelAvatarUrl || video.channel?.avatar}
+            location={`${video.property?.city || video.city}, ${video.property?.country || video.country || 'USA'}`}
           />
         ))}
       </div>
@@ -67,8 +76,13 @@ export default async function Home() {
                key={short.id} 
                {...short} 
                isShort={true} 
-               channelName={short.channelName || short.channel?.channelName}
-               channelAvatarUrl={short.channelAvatarUrl || short.channel?.avatarUrl}
+               price={short.property?.price ? Number(short.property.price) : short.price}
+               bedrooms={short.property?.bedrooms || short.bedrooms}
+               bathrooms={short.property?.bathrooms || short.bathrooms}
+               sizeSqm={short.property?.sizeSqm || short.sizeSqm}
+               status={short.property?.status || short.status}
+               channelName={short.channelName || short.channel?.name}
+               channelAvatarUrl={short.channelAvatarUrl || short.channel?.avatar}
              />
           ))}
         </div>
@@ -81,9 +95,14 @@ export default async function Home() {
             <VideoCard 
               key={video.id} 
               {...video} 
-              channelName={video.channelName || video.channel?.channelName}
-              channelAvatarUrl={video.channelAvatarUrl || video.channel?.avatarUrl}
-              location={`${video.city}, ${video.country || 'USA'}`}
+              price={video.property?.price ? Number(video.property.price) : video.price}
+              bedrooms={video.property?.bedrooms || video.bedrooms}
+              bathrooms={video.property?.bathrooms || video.bathrooms}
+              sizeSqm={video.property?.sizeSqm || video.sizeSqm}
+              status={video.property?.status || video.status}
+              channelName={video.channelName || video.channel?.name}
+              channelAvatarUrl={video.channelAvatarUrl || video.channel?.avatar}
+              location={`${video.property?.city || video.city}, ${video.property?.country || video.country || 'USA'}`}
             />
           ))}
         </div>

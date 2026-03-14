@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "मुख्य पृष्ठ",
+    "search": "खोजें",
+    "upload": "अपलोड",
+    "dashboard": "डैशबोर्ड",
+    "login": "लॉग इन",
+    "logout": "लॉग आउट",
+    "createChannel": "चैनल बनाएं"
+  },
+  "home": {
+    "feedTitle": "गुणों का अन्वेषण करें",
+    "loading": "लोड हो रहा है..."
+  },
+  "search": {
+    "title": "संपत्ति खोजें",
+    "placeholder": "शहर, कीवर्ड द्वारा खोजें...",
+    "noResults": "कोई परिणाम नहीं"
+  },
+  "watch": {
+    "subscribe": "सदस्यता लें",
+    "subscribed": "सदस्यता ली",
+    "subscribers": "सदस्य",
+    "share": "शेयर करें",
+    "views": "विचार",
+    "beds": "बिस्तर",
+    "baths": "स्नान",
+    "sqm": "वर्ग मीटर",
+    "forSale": "बिक्री के लिए",
+    "forRent": "किराए के लिए",
+    "comments": "टिप्पणियाँ",
+    "addComment": "एक टिप्पणी जोड़ें...",
+    "recommended": "अनुशंसित संपत्तियां"
+  },
+  "upload": {
+    "title": "वीडियो अपलोड करें",
+    "videoTitle": "शीर्षक",
+    "description": "विवरण",
+    "propertyType": "संपत्ति का प्रकार",
+    "status": "स्थिति",
+    "price": "मूल्य",
+    "bedrooms": "बेडरूम",
+    "bathrooms": "बाथरूम",
+    "size": "आकार (वर्ग मीटर)",
+    "country": "देश",
+    "city": "शहर",
+    "address": "पता",
+    "submit": "अपलोड करें"
+  },
+  "channel": {
+    "videos": "वीडियो"
+  },
+  "dashboard": {
+    "title": "डैशबोर्ड",
+    "totalViews": "कुल दृश्य",
+    "totalLikes": "कुल पसंद"
+  }
+}

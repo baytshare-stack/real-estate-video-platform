@@ -26,8 +26,8 @@ export async function POST(req: NextRequest) {
         if (user) {
             channel = await prisma.channel.create({
                 data: {
-                    userId: user.id,
-                    channelName: "Demo Creator",
+                    ownerId: user.id,
+                    name: "Demo Creator",
                     description: "Demo channel for testing uploads"
                 }
             });
@@ -42,17 +42,21 @@ export async function POST(req: NextRequest) {
             title,
             description: description || null,
             channelId: channel.id,
-            propertyType,
-            status,
-            bedrooms: bedrooms ? parseFloat(bedrooms) : null,
-            bathrooms: bathrooms ? parseFloat(bathrooms) : null,
-            sizeSqm: sizeSqm ? parseFloat(sizeSqm) : null,
-            price: parseFloat(price),
-            country,
-            city,
-            videoFormat: videoFormat || "LONG",
             videoUrl: videoUrl || "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4", // Mock video
-            thumbnailUrl: thumbnailUrl || "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800&h=450", // Mock thumbnail
+            thumbnail: thumbnailUrl || "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800&h=450", // Mock thumbnail
+            property: {
+                create: {
+                    propertyType: propertyType,
+                    status: status,
+                    bedrooms: bedrooms ? parseFloat(bedrooms) : undefined,
+                    bathrooms: bathrooms ? parseFloat(bathrooms) : undefined,
+                    sizeSqm: sizeSqm ? parseFloat(sizeSqm) : undefined,
+                    price: parseFloat(price),
+                    country: country,
+                    city: city,
+                    address: typeof area === 'string' ? area : undefined
+                }
+            }
         }
     });
 

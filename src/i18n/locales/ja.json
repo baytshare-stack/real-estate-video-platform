@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "search": "検索",
+    "upload": "アップロード",
+    "dashboard": "ダッシュボード",
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "createChannel": "チャンネルを作成"
+  },
+  "home": {
+    "feedTitle": "物件を探索",
+    "loading": "読み込み中..."
+  },
+  "search": {
+    "title": "物件を検索",
+    "placeholder": "都市やキーワードで検索...",
+    "noResults": "結果がありません"
+  },
+  "watch": {
+    "subscribe": "チャンネル登録",
+    "subscribed": "登録済み",
+    "subscribers": "登録者",
+    "share": "共有",
+    "views": "回視聴",
+    "beds": "ベッド",
+    "baths": "バス",
+    "sqm": "平方メートル",
+    "forSale": "販売中",
+    "forRent": "賃貸用",
+    "comments": "コメント",
+    "addComment": "コメントを追加...",
+    "recommended": "おすすめの物件"
+  },
+  "upload": {
+    "title": "動画をアップロード",
+    "videoTitle": "タイトル",
+    "description": "説明",
+    "propertyType": "物件タイプ",
+    "status": "ステータス",
+    "price": "価格",
+    "bedrooms": "ベッドルーム数",
+    "bathrooms": "バスルーム数",
+    "size": "広さ (平方メートル)",
+    "country": "国",
+    "city": "都市",
+    "address": "住所",
+    "submit": "アップロード"
+  },
+  "channel": {
+    "videos": "動画"
+  },
+  "dashboard": {
+    "title": "ダッシュボード",
+    "totalViews": "総視聴回数",
+    "totalLikes": "高評価の総数"
+  }
+}

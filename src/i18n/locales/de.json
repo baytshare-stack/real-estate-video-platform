@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "search": "Suchen",
+    "upload": "Hochladen",
+    "dashboard": "Dashboard",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "createChannel": "Kanal erstellen"
+  },
+  "home": {
+    "feedTitle": "Immobilien entdecken",
+    "loading": "Wird geladen..."
+  },
+  "search": {
+    "title": "Immobilien suchen",
+    "placeholder": "Suche nach Stadt, Stichworten...",
+    "noResults": "Keine Ergebnisse"
+  },
+  "watch": {
+    "subscribe": "Abonnieren",
+    "subscribed": "Abonniert",
+    "subscribers": "Abonnenten",
+    "share": "Teilen",
+    "views": "Aufrufe",
+    "beds": "Betten",
+    "baths": "Bäder",
+    "sqm": "m²",
+    "forSale": "ZUM VERKAUF",
+    "forRent": "ZUR MIETE",
+    "comments": "Kommentare",
+    "addComment": "Kommentar hinzufügen...",
+    "recommended": "Empfohlene Immobilien"
+  },
+  "upload": {
+    "title": "Video hochladen",
+    "videoTitle": "Titel",
+    "description": "Beschreibung",
+    "propertyType": "Immobilienart",
+    "status": "Status",
+    "price": "Preis",
+    "bedrooms": "Schlafzimmer",
+    "bathrooms": "Badezimmer",
+    "size": "Größe (m²)",
+    "country": "Land",
+    "city": "Stadt",
+    "address": "Adresse",
+    "submit": "Hochladen"
+  },
+  "channel": {
+    "videos": "Videos"
+  },
+  "dashboard": {
+    "title": "Creator Dashboard",
+    "totalViews": "Gesamtaufrufe",
+    "totalLikes": "Gesamt-Likes"
+  }
+}

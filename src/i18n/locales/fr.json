@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "search": "Recherche",
+    "upload": "Télécharger",
+    "dashboard": "Tableau de Bord",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "createChannel": "Créer une Chaîne"
+  },
+  "home": {
+    "feedTitle": "Explorer les Propriétés",
+    "loading": "Chargement..."
+  },
+  "search": {
+    "title": "Rechercher des Propriétés",
+    "placeholder": "Recherche par ville, mots-clés...",
+    "noResults": "Aucun résultat"
+  },
+  "watch": {
+    "subscribe": "S'abonner",
+    "subscribed": "Abonné",
+    "subscribers": "abonnés",
+    "share": "Partager",
+    "views": "vues",
+    "beds": "Lits",
+    "baths": "Bains",
+    "sqm": "m²",
+    "forSale": "À VENDRE",
+    "forRent": "À LOUER",
+    "comments": "Commentaires",
+    "addComment": "Ajouter un commentaire...",
+    "recommended": "Propriétés Recommandées"
+  },
+  "upload": {
+    "title": "Télécharger une Vidéo",
+    "videoTitle": "Titre",
+    "description": "Description",
+    "propertyType": "Type de Propriété",
+    "status": "Statut",
+    "price": "Prix",
+    "bedrooms": "Chambres",
+    "bathrooms": "Salles de bain",
+    "size": "Taille (m²)",
+    "country": "Pays",
+    "city": "Ville",
+    "address": "Adresse",
+    "submit": "Télécharger"
+  },
+  "channel": {
+    "videos": "Vidéos"
+  },
+  "dashboard": {
+    "title": "Tableau de Bord",
+    "totalViews": "Vues Totales",
+    "totalLikes": "J'aime Totaux"
+  }
+}

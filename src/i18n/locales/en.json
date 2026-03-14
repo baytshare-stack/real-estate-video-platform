@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Home",
+    "search": "Search",
+    "upload": "Upload",
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "logout": "Logout",
+    "createChannel": "Create Channel"
+  },
+  "home": {
+    "feedTitle": "Explore Properties",
+    "loading": "Loading feed..."
+  },
+  "search": {
+    "title": "Search Properties",
+    "placeholder": "Search by city, keywords...",
+    "noResults": "No results found"
+  },
+  "watch": {
+    "subscribe": "Subscribe",
+    "subscribed": "Subscribed",
+    "subscribers": "subscribers",
+    "share": "Share",
+    "views": "views",
+    "beds": "Beds",
+    "baths": "Baths",
+    "sqm": "Sqm",
+    "forSale": "FOR SALE",
+    "forRent": "FOR RENT",
+    "comments": "Comments",
+    "addComment": "Add a comment...",
+    "recommended": "Recommended Properties"
+  },
+  "upload": {
+    "title": "Upload Video",
+    "videoTitle": "Video Title",
+    "description": "Description",
+    "propertyType": "Property Type",
+    "status": "Status",
+    "price": "Price",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "size": "Size (Sqm)",
+    "country": "Country",
+    "city": "City",
+    "address": "Address",
+    "submit": "Upload"
+  },
+  "channel": {
+    "videos": "Videos"
+  },
+  "dashboard": {
+    "title": "Creator Dashboard",
+    "totalViews": "Total Views",
+    "totalLikes": "Total Likes"
+  }
+}

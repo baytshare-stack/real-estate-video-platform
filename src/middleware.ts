@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { locales, defaultLocale, type Locale } from "./i18n/config";
 
 // Simple in-memory rate limiter (for demo)
 // In production use Redis like @upstash/redis
@@ -8,6 +9,24 @@ const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
 const MAX_REQUESTS = 100;
+
+function getLocale(request: NextRequest): Locale {
+  // 1. Check if the user already has a sticky language preference
+  const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value;
+  if (cookieLocale && locales.includes(cookieLocale as Locale)) {
+    return cookieLocale as Locale;
+  }
+  
+  // 2. Parse Accept-Language header to detect browser language automatically
+  const acceptLang = request.headers.get("accept-language") || "";
+  for (const lang of acceptLang.split(",")) {
+    const code = lang.split(';')[0].trim().substring(0, 2).toLowerCase();
+    if (locales.includes(code as Locale)) {
+      return code as Locale;
+    }
+  }
+  return defaultLocale;
+}
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -62,6 +81,10 @@ export async function middleware(request: NextRequest) {
     response = NextResponse.next();
   }
 
+  // Ensure NEXT_LOCALE cookie logic
+  const locale = getLocale(request);
+  response.cookies.set("NEXT_LOCALE", locale, { path: "/", maxAge: 60 * 60 * 24 * 365, sameSite: "lax" });
+
   // Add security headers to all responses.
   response.headers.set("X-XSS-Protection", "1; mode=block");
   response.headers.set("X-Frame-Options", "DENY");
@@ -72,5 +95,8 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/:path*"],
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    "/((?!_next|favicon.ico|images|api).*)"
+  ],
 };

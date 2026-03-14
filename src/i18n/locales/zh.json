@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "首页",
+    "search": "搜索",
+    "upload": "上传",
+    "dashboard": "仪表板",
+    "login": "登录",
+    "logout": "登出",
+    "createChannel": "创建频道"
+  },
+  "home": {
+    "feedTitle": "发现房产",
+    "loading": "加载中..."
+  },
+  "search": {
+    "title": "搜索房产",
+    "placeholder": "按城市、关键字搜索...",
+    "noResults": "没有结果"
+  },
+  "watch": {
+    "subscribe": "订阅",
+    "subscribed": "已订阅",
+    "subscribers": "订阅者",
+    "share": "分享",
+    "views": "次观看",
+    "beds": "卧室",
+    "baths": "浴室",
+    "sqm": "平方米",
+    "forSale": "出售",
+    "forRent": "出租",
+    "comments": "评论",
+    "addComment": "添加评论...",
+    "recommended": "推荐房产"
+  },
+  "upload": {
+    "title": "上传视频",
+    "videoTitle": "标题",
+    "description": "描述",
+    "propertyType": "房产类型",
+    "status": "状态",
+    "price": "价格",
+    "bedrooms": "卧室",
+    "bathrooms": "浴室",
+    "size": "面积 (平方米)",
+    "country": "国家",
+    "city": "城市",
+    "address": "地址",
+    "submit": "上传"
+  },
+  "channel": {
+    "videos": "视频"
+  },
+  "dashboard": {
+    "title": "创作者仪表板",
+    "totalViews": "总观看次数",
+    "totalLikes": "总点赞数"
+  }
+}

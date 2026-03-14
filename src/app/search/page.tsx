@@ -3,6 +3,8 @@ import SearchClient from './SearchClient';
 
 const prisma = new PrismaClient();
 
+export const dynamic = 'force-dynamic';
+
 export default async function SearchAndMapPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const unwrappedParams = await searchParams;
   const query = unwrappedParams.q || '';
@@ -12,15 +14,16 @@ export default async function SearchAndMapPage({ searchParams }: { searchParams:
   const searchResults = await prisma.video.findMany({
     where: query ? {
       OR: [
-        { title: { contains: query } },
-        { description: { contains: query } },
-        { city: { contains: query } },
-        { country: { contains: query } }
+        { title: { contains: query, mode: "insensitive" } },
+        { description: { contains: query, mode: "insensitive" } },
+        { property: { city: { contains: query, mode: "insensitive" } } },
+        { property: { country: { contains: query, mode: "insensitive" } } }
       ]
     } : {},
     orderBy: { createdAt: 'desc' },
     include: {
-      channel: { select: { channelName: true, avatarUrl: true }}
+      channel: { select: { name: true, avatar: true }},
+      property: true
     },
     take: 30
   });

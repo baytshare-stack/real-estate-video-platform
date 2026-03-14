@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "search": "بحث",
+    "upload": "رفع",
+    "dashboard": "لوحة التحكم",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "createChannel": "إنشاء قناة"
+  },
+  "home": {
+    "feedTitle": "استكشف العقارات",
+    "loading": "جارٍ التحميل..."
+  },
+  "search": {
+    "title": "البحث عن عقارات",
+    "placeholder": "ابحث بالمدينة أو الكلمات المفتاحية...",
+    "noResults": "لا توجد نتائج"
+  },
+  "watch": {
+    "subscribe": "اشتراك",
+    "subscribed": "مشترك",
+    "subscribers": "مشتركين",
+    "share": "مشاركة",
+    "views": "مشاهدات",
+    "beds": "غرف نوم",
+    "baths": "حمامات",
+    "sqm": "متر مربع",
+    "forSale": "للبيع",
+    "forRent": "للإيجار",
+    "comments": "التعليقات",
+    "addComment": "أضف تعليقاً...",
+    "recommended": "عقارات مقترحة"
+  },
+  "upload": {
+    "title": "رفع فيديو",
+    "videoTitle": "عنوان الفيديو",
+    "description": "الوصف",
+    "propertyType": "نوع العقار",
+    "status": "الحالة",
+    "price": "السعر",
+    "bedrooms": "غرف النوم",
+    "bathrooms": "الحمامات",
+    "size": "المساحة (متر مربع)",
+    "country": "الدولة",
+    "city": "المدينة",
+    "address": "العنوان",
+    "submit": "رفع"
+  },
+  "channel": {
+    "videos": "الفيديوهات"
+  },
+  "dashboard": {
+    "title": "لوحة تحكم المُنشئ",
+    "totalViews": "إجمالي المشاهدات",
+    "totalLikes": "إجمالي الإعجابات"
+  }
+}

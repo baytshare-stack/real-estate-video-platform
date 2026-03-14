@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
-
-const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
   try {
@@ -35,6 +33,11 @@ export async function POST(req: Request) {
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
 
+    // Map the incoming UI accountType ("VIEWER", "COMPANY") to Database roles
+    let mappedRole: "USER" | "AGENT" | "AGENCY" | "ADMIN" = "USER";
+    if (accountType === "AGENT") mappedRole = "AGENT";
+    if (accountType === "COMPANY" || accountType === "AGENCY") mappedRole = "AGENCY";
+
     // Create user in DB
     const newUser = await prisma.user.create({
       data: {
@@ -44,8 +47,7 @@ export async function POST(req: Request) {
         country,
         phoneCode,
         phoneNumber,
-        role: accountType,
-        // emailVerified is explicitly NULL by default
+        role: mappedRole,
       },
     });
 

@@ -3,12 +3,14 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, Flame, Clock, PlaySquare, Compass, FolderHeart, Settings, HelpCircle } from 'lucide-react';
+import { useTranslation } from '@/i18n/LanguageProvider';
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   const mainLinks = [
-    { name: 'Home', href: '/', icon: Home },
+    { name: t('nav', 'home'), href: '/', icon: Home },
     { name: 'Shorts', href: '/shorts', icon: Flame },
     { name: 'Subscriptions', href: '/subscriptions', icon: PlaySquare },
   ];

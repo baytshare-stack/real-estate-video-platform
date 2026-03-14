@@ -4,11 +4,13 @@ import { useState } from 'react';
 import VideoCard from '@/components/VideoCard';
 import { Search, MapPin, SlidersHorizontal } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from '@/i18n/LanguageProvider';
 
 export default function SearchClient({ initialVideos, initialQuery }: { initialVideos: any[], initialQuery: string }) {
   const [isMapVisible, setIsMapVisible] = useState(true);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,13 +28,13 @@ export default function SearchClient({ initialVideos, initialQuery }: { initialV
              <Search className="w-5 h-5 text-gray-500 mr-3 hidden sm:block" />
              <input 
                type="text" 
-               placeholder="Search by city, keyword, or zipcode..." 
+               placeholder={t('search', 'placeholder')} 
                className="bg-transparent text-white w-full outline-none" 
                value={searchQuery}
                onChange={(e) => setSearchQuery(e.target.value)}
              />
              <button type="submit" className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-1.5 rounded-md font-medium text-sm transition-colors ml-2 shadow-lg shadow-blue-600/20">
-               Search
+               {t('nav', 'search')}
              </button>
            </form>
 
@@ -88,13 +90,18 @@ export default function SearchClient({ initialVideos, initialQuery }: { initialV
                    <VideoCard 
                       key={video.id} 
                       {...video} 
-                      channelName={video.channelName || video.channel?.channelName || "Unknown Channel"}
-                      channelAvatarUrl={video.channelAvatarUrl || video.channel?.avatarUrl}
-                      location={`${video.city}, ${video.country || 'Unknown'}`}
+                      price={video.property?.price ? Number(video.property.price) : video.price}
+                      bedrooms={video.property?.bedrooms || video.bedrooms}
+                      bathrooms={video.property?.bathrooms || video.bathrooms}
+                      sizeSqm={video.property?.sizeSqm || video.sizeSqm}
+                      status={video.property?.status || video.status}
+                      channelName={video.channelName || video.channel?.name || "Unknown Channel"}
+                      channelAvatarUrl={video.channelAvatarUrl || video.channel?.avatar}
+                      location={`${video.property?.city || video.city}, ${video.property?.country || video.country || 'Unknown'}`}
                    />
                  )) : (
                    <div className="col-span-full py-20 text-center text-gray-500">
-                      No properties found matching your search. Try adjusting your filters.
+                      {t('search', 'noResults')}
                    </div>
                  )}
               </div>

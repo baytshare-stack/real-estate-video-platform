@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Início",
+    "search": "Buscar",
+    "upload": "Enviar",
+    "dashboard": "Painel",
+    "login": "Entrar",
+    "logout": "Sair",
+    "createChannel": "Criar Canal"
+  },
+  "home": {
+    "feedTitle": "Explorar Propriedades",
+    "loading": "Carregando..."
+  },
+  "search": {
+    "title": "Buscar Propriedades",
+    "placeholder": "Buscar por cidade, palavras-chave...",
+    "noResults": "Nenhum resultado"
+  },
+  "watch": {
+    "subscribe": "Inscrever-se",
+    "subscribed": "Inscrito",
+    "subscribers": "inscritos",
+    "share": "Compartilhar",
+    "views": "visualizações",
+    "beds": "Camas",
+    "baths": "Banhos",
+    "sqm": "m²",
+    "forSale": "A VENDA",
+    "forRent": "ALUGAR",
+    "comments": "Comentários",
+    "addComment": "Adicionar comentário...",
+    "recommended": "Propriedades Recomendadas"
+  },
+  "upload": {
+    "title": "Enviar Vídeo",
+    "videoTitle": "Título",
+    "description": "Descrição",
+    "propertyType": "Tipo de Propriedade",
+    "status": "Status",
+    "price": "Preço",
+    "bedrooms": "Quartos",
+    "bathrooms": "Banheiros",
+    "size": "Tamanho (m²)",
+    "country": "País",
+    "city": "Cidade",
+    "address": "Endereço",
+    "submit": "Enviar"
+  },
+  "channel": {
+    "videos": "Vídeos"
+  },
+  "dashboard": {
+    "title": "Painel",
+    "totalViews": "Visualizações Totais",
+    "totalLikes": "Curtidas Totais"
+  }
+}

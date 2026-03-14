@@ -18,34 +18,42 @@ export async function GET(req: Request) {
       OR: [
         { title: { contains: query } },  // SQLite defaults to case-insensitive mostly
         { description: { contains: query } },
+        { property: { city: { contains: query } } },
+        { property: { country: { contains: query } } }
       ],
     };
 
+    const propertyFilter: Prisma.PropertyWhereInput = {};
+
     if (city) {
-      whereClause.city = { contains: city };
+      propertyFilter.city = { contains: city };
     }
 
     if (type) {
-      // Force cast to the enum for strict filtering
-      whereClause.propertyType = type as any; 
+      propertyFilter.propertyType = type as any; 
     }
 
     if (minPrice || maxPrice) {
-      whereClause.price = {};
-      if (minPrice) whereClause.price.gte = parseFloat(minPrice);
-      if (maxPrice) whereClause.price.lte = parseFloat(maxPrice);
+      propertyFilter.price = {};
+      if (minPrice) propertyFilter.price.gte = parseFloat(minPrice);
+      if (maxPrice) propertyFilter.price.lte = parseFloat(maxPrice);
     }
 
     if (bedrooms) {
-      whereClause.bedrooms = { gte: parseInt(bedrooms, 10) };
+      propertyFilter.bedrooms = { gte: parseInt(bedrooms, 10) };
+    }
+
+    if (Object.keys(propertyFilter).length > 0) {
+      whereClause.property = propertyFilter;
     }
 
     const results = await prisma.video.findMany({
       where: whereClause,
       include: {
         channel: {
-          select: { channelName: true, avatarUrl: true }
-        }
+          select: { name: true, avatar: true }
+        },
+        property: true
       },
       orderBy: {
         createdAt: "desc"
